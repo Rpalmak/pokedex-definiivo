@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Header from '../components/Header';
+import AlolaImage from '../assets/images/regions/Alola.webp'
 
 function Alola() {
+
   return (
-    <div>Alola</div>
-  )
+    <>
+      <Header imagenRegion={AlolaImage} nombre={"Alola"}altText="Alola Region" />
+    </>
+  );
 }
 
-export default Alola
+export default Alola;

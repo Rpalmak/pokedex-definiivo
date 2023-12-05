@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Header from '../components/Header';
+import KalosImage from '../assets/images/regions/Kalos.webp'
 
 function Kalos() {
+
   return (
-    <div>Kalos</div>
-  )
+    <>
+      <Header imagenRegion={KalosImage} nombre={"Kalos"}altText="Kalos Region" />
+    </>
+  );
 }
 
-export default Kalos
+export default Kalos;

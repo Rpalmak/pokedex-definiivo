@@ -55,7 +55,65 @@
   letter-spacing: 4px;
 }
 
-/* Puedes ajustar estos estilos según tus preferencias y diseño */
+.navbar {
+  background-image: url('pokemon-background.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+/* index.css */
+.navbar-with-background {
+  background-color: rgba(128, 128, 128, 0.3);
+}
+
+
+.navbar-brand img {
+  width: 100px;
+  height: auto;
+}
+
+
+
+.nav-link {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  margin-left: 15px;
+  font-size: 1.2em;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out;
+}
+
+.mainPanel{
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./assets/images/mainbg.jpg');
+}
+
+.nav-link:hover {
+  background-color: #6fa8a8;
+  animation: hover-effect 0.5s ease-in-out;
+}
+
+@keyframes hover-effect {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
 
 
 

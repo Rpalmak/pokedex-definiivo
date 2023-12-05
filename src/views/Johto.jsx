@@ -1,12 +1,12 @@
 import React from 'react';
-import SubHeader from '../components/SubHeader';
+import Header from '../components/Header';
 import JohtoImage from '../assets/images/regions/johto.png'
 
 function Johto() {
 
   return (
     <>
-      <SubHeader imagenRegion={JohtoImage} nombre={"Johto"}altText="Kanto Region" />
+      <Header imagenRegion={JohtoImage} nombre={"Johto"}altText="Johto Region" />
     </>
   );
 }

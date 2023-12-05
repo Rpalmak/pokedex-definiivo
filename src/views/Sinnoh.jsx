@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Header from '../components/Header';
+import SinnohImage from '../assets/images/regions/Sinnoh.webp'
 
 function Sinnoh() {
+
   return (
-    <div>Sinnoh</div>
-  )
+    <>
+      <Header imagenRegion={SinnohImage} nombre={"Sinnoh"}altText="Sinnoh Region" />
+    </>
+  );
 }
 
-export default Sinnoh
+export default Sinnoh;

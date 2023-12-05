@@ -1,9 +1,14 @@
-import React from 'react'
+import React from 'react';
+import Header from '../components/Header';
+import HoenImage from '../assets/images/regions/Hoenn.webp'
 
 function Hoenn() {
+
   return (
-    <div>Hoenn</div>
-  )
+    <>
+      <Header imagenRegion={HoenImage} nombre={"Hoenn"}altText="Hoenn Region" />
+    </>
+  );
 }
 
-export default Hoenn
+export default Hoenn;
