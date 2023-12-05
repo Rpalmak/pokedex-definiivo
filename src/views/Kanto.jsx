@@ -3,9 +3,10 @@ import SubHeader from '../components/SubHeader';
 import kantoImage from '../assets/images/regions/kanto.png'
 
 function Kanto() {
+
   return (
     <>
-      <SubHeader imagenRegion={kantoImage} altText="Kanto Region" />
+      <SubHeader imagenRegion={kantoImage} nombre={"Kanto"} altText="Kanto Region" />
     </>
   );
 }
