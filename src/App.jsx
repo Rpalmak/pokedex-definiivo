@@ -1,4 +1,5 @@
 import React from 'react';
+import {Provider} from "./context";
 import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
@@ -19,6 +20,7 @@ import MainPanel from './components/MainPanel';
 function App() {
   return (
     <>
+    <Provider>
       <Routes>
       <Route path="/Kanto" element={<Kanto />} />
         <Route path="/Johto" element={<Johto />} />
@@ -32,6 +34,7 @@ function App() {
         <Route path="/Paldea" element={<Paldea />} />
       </Routes>
       <MainPanel/>
+    </Provider>
     </>
   );
 }

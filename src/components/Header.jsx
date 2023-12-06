@@ -1,21 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import PokemonLogo from "../assets/images/Pokemon.svg";
 import PropTypes from "prop-types";
+import { PokeContext } from '../context';
 
 const Header = ({ imagenRegion, altText, nombre }) => {
+  const { setRegion } = useContext(PokeContext);
+
+  useEffect(() => {
+    setRegion(nombre);
+  }, [setRegion, nombre]);
+  
   return (
     <>
       <Navbar
         expand="lg"
         style={{
+          background: "linear-gradient(89deg, rgba(134,209,203,1) 0%, rgba(39,93,101,0.8799894957983193) 100%)",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          background: "rgb(134, 209, 203)",
-          backgroundImage: "linear-gradient(89deg, rgba(134, 209, 203, 1) 0%, rgba(39, 61, 101, 1) 100%)",
+          backgroundColor: "rgba(134, 209, 203, 0.8)", 
+          backdropFilter: "blur(5px)",
           filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#86d1cb', endColorstr='#273d65', GradientType=1)"
         }}
+        
         variant="dark"
         sticky="top"
       >
