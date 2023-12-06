@@ -1,55 +1,89 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { PokeContext } from '../context';
-import PokeCard from './PokeCard';
+import React, { useContext, useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import { PokeContext } from "../context";
+import PokeCard from "./PokeCard";
 
 function BasicExample() {
-    const { region } = useContext(PokeContext);
-    const regionOffsets = {
-        "kanto": 0,
-        "johto": 151,
-        "hoenn": 251,
-        "sinnoh": 386,
-        "unova": 493,
-        "kalos": 649,
-        "alola": 721,
-        "galar": 809,
-        "hisui": 898,
-        "paldea": 905,
-        
+  const { region } = useContext(PokeContext);
+
+  const regionOffsets = {
+    kanto: 0,
+    johto: 151,
+    hoenn: 251,
+    sinnoh: 386,
+    unova: 493,
+    kalos: 649,
+    alola: 721,
+    galar: 809,
+    hisui: 898,
+    paldea: 905,
+  };
+
+  const limitMap = {
+    Kanto: 151,
+    Johto: 100,
+    Hoenn: 135,
+    Sinnoh: 107,
+    Unova: 156,
+    Kalos: 72,
+    Alola: 88,
+    Galar: 89,
+    Hisui: 7,
+    Paldea: 112,
+  };
+
+  const getApiUrl = async () => {
+    const offset = regionOffsets[region.toLowerCase()] || 0;
+    const limit = limitMap[region];
+
+    return `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+  };
+
+  const [pokemonList, setPokemonList] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const apiCall = await getApiUrl();
+        const response = await fetch(apiCall);
+        const data = await response.json();
+
+        // Hacer llamadas a la API para cada Pokemon individual
+        const detailPromises = data.results.map(async (pokemon) => {
+          const detailResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
+          const detailData = await detailResponse.json();
+          return {
+            name: pokemon.name,
+            image: detailData.sprites.front_default,
+          };
+        });
+
+        // Esperar a que todas las promesas se resuelvan
+        const detailedPokemon = await Promise.all(detailPromises);
+        setPokemonList(detailedPokemon);
+      } catch (err) {
+        console.log(err.message);
+      }
     };
 
-    const offset = regionOffsets[region.toLowerCase()] || ""; // Convierte la región a minúsculas
-    let limit = "10000";
-    if (region === "Kanto") {
-        limit = 150;
+    if (region) {
+      fetchData();
     }
-    console.log(offset);
-    const apiCall = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
+  }, [region]);
 
-    const [pokemonList, setPokemonList] = useState([]);
-
-    useEffect(() => {
-        fetch(apiCall)
-            .then(response => response.json())
-            .then(data => {
-                setPokemonList(data.results);
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, [apiCall]);
-
-    return (
-        <>
-            {pokemonList.map((pokemon, index) => (
-                <PokeCard key={index}
-                    nombre={pokemon.name}
-                />
-            ))}
-        </>
-    );
+  return (
+    <>
+      {pokemonList.map((pokemon, index) => (
+        <PokeCard
+          key={index}
+          nombre={pokemon.name}
+          imagen={pokemon.image}
+          tipo={pokemon.types}
+        />
+      ))}
+    </>
+  );
 }
 
 export default BasicExample;
