@@ -12,7 +12,7 @@ function BasicExample() {
     johto: 151,
     hoenn: 251,
     sinnoh: 386,
-    unova: 493,
+    unova: 494,
     kalos: 649,
     alola: 721,
     galar: 809,
@@ -25,7 +25,7 @@ function BasicExample() {
     Johto: 100,
     Hoenn: 135,
     Sinnoh: 107,
-    Unova: 156,
+    Unova: 155,
     Kalos: 72,
     Alola: 88,
     Galar: 89,
@@ -56,10 +56,13 @@ function BasicExample() {
           return {
             name: pokemon.name,
             image: detailData.sprites.front_default,
+            number: detailData.order,
+            types : detailData.types.map((type) => type.type.name)
+
+
           };
         });
 
-        // Esperar a que todas las promesas se resuelvan
         const detailedPokemon = await Promise.all(detailPromises);
         setPokemonList(detailedPokemon);
       } catch (err) {
@@ -79,6 +82,7 @@ function BasicExample() {
           key={index}
           nombre={pokemon.name}
           imagen={pokemon.image}
+          numero={pokemon.number}
           tipo={pokemon.types}
         />
       ))}
