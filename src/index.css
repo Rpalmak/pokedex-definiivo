@@ -131,13 +131,15 @@
 
 .mainPanel {
   display: flex;
-  flex-wrap: wrap; /* Agrega esta línea */
-  position: relative;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  
+  flex-wrap: wrap;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
 }
+
+.columnaPokemonCard {
+  display: flex;
+}
+
 .componenteMainGeneral{
   padding: 100px;
   background: rgb(134, 209, 203);
@@ -145,7 +147,7 @@
 }
 
 .poke-card {
-  width: 230px;
+  width: 250px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
 }
@@ -166,8 +168,17 @@
   margin-bottom: 10px;
   font-family: Arial, sans-serif;
   font-size: 16px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  
 }
 
+
+
+.infoCard p{
+  margin: 3px !important;
+}
 
 .label {
   font-weight: bold;

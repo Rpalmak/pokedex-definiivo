@@ -3,6 +3,47 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import PropTypes from "prop-types";
 
+//iconos
+import normalIcon from "../assets/images/typeIcons/normal.png";
+import fireIcon from "../assets/images/typeIcons/fire.png";
+import waterIcon from "../assets/images/typeIcons/water.png";
+import grassIcon from "../assets/images/typeIcons/grass.png";
+import electricIcon from "../assets/images/typeIcons/electric.png";
+import iceIcon from "../assets/images/typeIcons/ice.png";
+import fightingIcon from "../assets/images/typeIcons/fighting.png";
+import poisonIcon from "../assets/images/typeIcons/poison.png";
+import groundIcon from "../assets/images/typeIcons/ground.png";
+import flyingIcon from "../assets/images/typeIcons/flying.png";
+import psychicIcon from "../assets/images/typeIcons/psychic.png";
+import bugIcon from "../assets/images/typeIcons/bug.png";
+import rockIcon from "../assets/images/typeIcons/rock.png";
+import ghostIcon from "../assets/images/typeIcons/ghost.png";
+import dragonIcon from "../assets/images/typeIcons/dragon.png";
+import darkIcon from "../assets/images/typeIcons/dark.png";
+import steelIcon from "../assets/images/typeIcons/steel.png";
+import fairyIcon from "../assets/images/typeIcons/fairy.png";
+
+const tipoIconos = {
+  normal: normalIcon,
+  fire: fireIcon,
+  water: waterIcon,
+  grass: grassIcon,
+  electric: electricIcon,
+  ice: iceIcon,
+  fighting: fightingIcon,
+  poison: poisonIcon,
+  ground: groundIcon,
+  flying: flyingIcon,
+  psychic: psychicIcon,
+  bug: bugIcon,
+  rock: rockIcon,
+  ghost: ghostIcon,
+  dragon: dragonIcon,
+  dark: darkIcon,
+  steel: steelIcon,
+  fairy: fairyIcon,
+};
+
 const tipoColores = {
   normal: "#FFFAFA",
   fire: "#FF4500",
@@ -25,7 +66,6 @@ const tipoColores = {
 };
 
 function getColorForType(tipo) {
-  // Check if the type has a defined color.
   if (tipoColores[tipo]) {
     return tipoColores[tipo];
   } else {
@@ -44,7 +84,15 @@ function getColorForTypes(types) {
 }
 
 export function PokeCard({ nombre, numero, imagen, tipo }) {
-  const formattedTipos = tipo.join(" | ");
+  const formattedTipos = tipo.map((tipo) => (
+    <span key={tipo} style={{ display: "flex", alignItems: "center" }}>
+      <img
+        src={tipoIconos[tipo]}
+        alt={tipo}
+        style={{ width: "80px", height: "24px", marginRight: "5px" }}
+      />
+    </span>
+  ));
 
   const colors = tipo.map((tipo) => getColorForType(tipo));
   const [backgroundColor, setBackgroundColor] = useState(
@@ -55,12 +103,6 @@ export function PokeCard({ nombre, numero, imagen, tipo }) {
     console.log(`Background color: ${backgroundColor}`);
   }, [backgroundColor]);
 
-  // Define styles before using them
-  const cardTextStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  };
 
   const labelStyle = {
     fontSize: '14px',
@@ -73,6 +115,7 @@ export function PokeCard({ nombre, numero, imagen, tipo }) {
     textTransform: 'capitalize',
     color: '#333',
     margin: '5px 0',
+    display: 'Flex',
   };
 
   const cardStyle = {
@@ -100,41 +143,37 @@ export function PokeCard({ nombre, numero, imagen, tipo }) {
   };
 
   return (
-    <div
-  className="col-xxxxl-2 col-xxxl-3 col-xxl-3 col-xl-6 col-lg-12 col-sm-12 col-md-12 mb-4"
-  style={{ pointerEvents: "none" }}
->
-      <Card className="poke-card" style={cardStyle}>
-        <div className="card-image-container">
-          <Card.Img
-            variant="top"
-            src={imagen}
-            className="card-image"
-            style={{ userSelect: "none", outline: "none" }}
-          />
-        </div>
-        <Card.Body style={infoCardStyle}>
-          <Card.Title style={titleStyle}>{nombre}</Card.Title>
-          <div className="infoCard" style={cardTextStyle}>
-            <Card.Text style={labelStyle}>Type</Card.Text>
-            <Card.Text style={infoStyle}>{formattedTipos}</Card.Text>
-            <Card.Text style={labelStyle}>Number</Card.Text>
-            <Card.Text style={infoStyle}>{numero}</Card.Text>
-          </div>
-          <Button
-            variant="outline-dark"
-            className="poke-card-button"
-            style={buttonStyle}
-          >
-            View more
-          </Button>
-        </Card.Body>
-      </Card>
+    <div className="columnaPokemonCard text-center col-xxxxl-2 col-xxxl-3 col-xxl-3 col-xl-6 col-lg-12 col-sm-12 col-md-12 mb-4" style={{ pointerEvents: "none" }}>
+  <Card className="poke-card" style={cardStyle}>
+    <div className="card-image-container">
+      <Card.Img
+        variant="top"
+        src={imagen}
+        className="card-image"
+        style={{ userSelect: "none", outline: "none" }}
+      />
     </div>
+    <Card.Body style={infoCardStyle}>
+      <Card.Title style={titleStyle}>{nombre}</Card.Title>
+      <div className="infoCard text-center">
+        <Card.Text style={labelStyle}>Type</Card.Text>
+        <Card.Text style={infoStyle}>{formattedTipos}</Card.Text>
+        <Card.Text style={labelStyle}>Number</Card.Text>
+        <Card.Text style={infoStyle}>{numero}</Card.Text>
+      </div>
+      <Button
+        variant="outline-dark"
+        className="poke-card-button"
+        style={buttonStyle}
+      >
+        View more
+      </Button>
+    </Card.Body>
+  </Card>
+</div>
+
   );
 }
-
-export default PokeCard;
 
 PokeCard.propTypes = {
   nombre: PropTypes.string.isRequired,
@@ -142,3 +181,5 @@ PokeCard.propTypes = {
   tipo: PropTypes.array.isRequired,
   numero: PropTypes.number.isRequired,
 };
+
+export default PokeCard;
