@@ -83,7 +83,7 @@ function getColorForTypes(types) {
   }
 }
 
-export function PokeCard({ nombre, numero, imagen, tipo }) {
+export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
   const formattedTipos = tipo.map((tipo) => (
     <span key={tipo} style={{ display: "flex", alignItems: "center" }}>
       <img
@@ -103,25 +103,22 @@ export function PokeCard({ nombre, numero, imagen, tipo }) {
     console.log(`Background color: ${backgroundColor}`);
   }, [backgroundColor]);
 
-
   const labelStyle = {
-    fontSize: '14px',
-    fontWeight: 'bold',
-    color: '#555',
+    fontSize: "14px",
+    fontWeight: "bold",
+    color: "#555",
   };
 
   const infoStyle = {
-    fontSize: '16px',
-    textTransform: 'capitalize',
-    color: '#333',
-    margin: '5px 0',
-    display: 'Flex',
+    fontSize: "16px",
+    color: "#333",
+    margin: "5px 0",
+    display: "Flex",
   };
 
   const cardStyle = {
     background: colors.length === 1 ? colors[0] : `linear-gradient(${colors})`,
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    pointerEvents: "none",
   };
 
   const titleStyle = {
@@ -138,40 +135,52 @@ export function PokeCard({ nombre, numero, imagen, tipo }) {
     userSelect: "none",
     margin: 0,
   };
-  const buttonStyle = {
-    userSelect: "none",
-  };
 
   return (
-    <div className="columnaPokemonCard text-center col-xxxxl-2 col-xxxl-3 col-xxl-3 col-xl-6 col-lg-12 col-sm-12 col-md-12 mb-4" style={{ pointerEvents: "none" }}>
-  <Card className="poke-card" style={cardStyle}>
-    <div className="card-image-container">
-      <Card.Img
-        variant="top"
-        src={imagen}
-        className="card-image"
-        style={{ userSelect: "none", outline: "none" }}
-      />
+    <div
+      className="columnaPokemonCard text-center col-xxxxl-2 col-xxxl-3 col-xxl-3 col-xl-6 col-lg-12 col-sm-12 col-md-12 mb-4"
+      style={{ pointerEvents: "none" }}
+    >
+      <Card className="poke-card" style={cardStyle}>
+        <div className="card-image-container">
+          <Card.Img
+            variant="top"
+            src={imagen}
+            className="card-image"
+            style={{ userSelect: "none", outline: "none" }}
+          />
+        </div>
+        <Card.Body>
+          <Card.Title style={titleStyle}>{nombre}</Card.Title>
+          <div className="infoCard text-center" style={infoCardStyle}>
+            <Card.Text style={labelStyle}>Type</Card.Text>
+            <Card.Text style={infoStyle}>{formattedTipos}</Card.Text>
+            <Card.Text style={labelStyle}>Number</Card.Text>
+            <Card.Text style={infoStyle}>#{numero}</Card.Text>
+            <div className="d-flex flex-row gap-2">
+              <div
+                className="d-flex flex-column"
+                style={{ alignItems: "center" }}
+              >
+                <Card.Text style={labelStyle}>Height</Card.Text>
+                <Card.Text style={infoStyle}>{height} m.</Card.Text>
+              </div>
+              <span>|</span>
+              <div
+                className="d-flex flex-column"
+                style={{ alignItems: "center" }}
+              >
+                <Card.Text style={labelStyle}>Weight</Card.Text>
+                <Card.Text style={infoStyle}>{weight} k.</Card.Text>
+              </div>
+            </div>
+          </div>
+          <Button variant="outline-dark" className="poke-card-button">
+            View more
+          </Button>
+        </Card.Body>
+      </Card>
     </div>
-    <Card.Body style={infoCardStyle}>
-      <Card.Title style={titleStyle}>{nombre}</Card.Title>
-      <div className="infoCard text-center">
-        <Card.Text style={labelStyle}>Type</Card.Text>
-        <Card.Text style={infoStyle}>{formattedTipos}</Card.Text>
-        <Card.Text style={labelStyle}>Number</Card.Text>
-        <Card.Text style={infoStyle}>{numero}</Card.Text>
-      </div>
-      <Button
-        variant="outline-dark"
-        className="poke-card-button"
-        style={buttonStyle}
-      >
-        View more
-      </Button>
-    </Card.Body>
-  </Card>
-</div>
-
   );
 }
 
@@ -180,6 +189,8 @@ PokeCard.propTypes = {
   imagen: PropTypes.string.isRequired,
   tipo: PropTypes.array.isRequired,
   numero: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  weight: PropTypes.number.isRequired,
 };
 
 export default PokeCard;

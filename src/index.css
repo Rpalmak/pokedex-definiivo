@@ -28,7 +28,11 @@
 
 /* Estilos para pantallas grandes (escritorios) */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
-  /* Tus estilos para pantallas grandes aquí */
+  .mainPanel {
+    display: flex;
+    justify-content: center; 
+    align-items: center; /* Centra verticalmente */
+  }
 }
 
 /* Estilos para pantallas extra grandes (escritorios grandes) entre 1200px y 1599px */
@@ -138,6 +142,7 @@
 
 .columnaPokemonCard {
   display: flex;
+  justify-content: center;
 }
 
 .componenteMainGeneral{
@@ -152,9 +157,6 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.poke-card:hover {
-  transform: scale(1.05);
-}
 
 .card-image-container {
   height: 200px;
@@ -185,9 +187,6 @@
   color: #555;
 }
 
-.poke-card-button {
-  margin-top: 10px;
-}
 
 .card-image-container {
   height: 150px;
@@ -221,6 +220,14 @@
   border-radius: 5px;
   background-color: #FFA500;
   color: white;
+  margin-top: 10px;
+  transform: scale(1.05);
+}
+
+.poke-card-button:hover {
+  background-color: #635335;
+  color: white;
+  margin-top: 10px;
 }
 
 .poke-card:hover {
@@ -243,9 +250,7 @@
   color: #555;
 }
 
-.poke-card-button {
-  margin-top: auto;
-}
+
 
 
 
@@ -302,24 +307,6 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
 @media (prefers-color-scheme: light) {
   :root {

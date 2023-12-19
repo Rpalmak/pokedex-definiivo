@@ -57,6 +57,8 @@ function BasicExample() {
             name: pokemon.name,
             image: detailData.sprites.front_default,
             number: detailData.order,
+            height: detailData.height,
+            weight: detailData.weight,
             types : detailData.types.map((type) => type.type.name)
 
 
@@ -84,6 +86,8 @@ function BasicExample() {
           imagen={pokemon.image}
           numero={pokemon.number}
           tipo={pokemon.types}
+          height={pokemon.height/10.0}
+          weight={pokemon.weight/10.0}
         />
       ))}
     </>

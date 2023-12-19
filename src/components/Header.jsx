@@ -15,7 +15,7 @@ const Header = ({ imagenRegion, altText, nombre }) => {
   return (
     <>
       <Navbar
-        expand="lg"
+        expand="xl"
         style={{
           background: "linear-gradient(89deg, rgba(134,209,203,1) 0%, rgba(39,93,101,0.8799894957983193) 100%)",
           backgroundSize: "cover",
