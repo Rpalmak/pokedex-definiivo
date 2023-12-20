@@ -2,8 +2,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  margin-left: 250px;
-  margin-right: 250px;
+  margin-left: 200px;
+  margin-right: 200px;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -18,12 +18,32 @@
 
 /* Estilos para pantallas pequeñas (teléfonos) */
 @media only screen and (max-width: 767px) {
-  /* Tus estilos para pantallas pequeñas aquí */
+  :root {
+    margin: 0;
+  }
+  .columnaPokemonCard{
+    display: contents !important;
+   }
+
+   .mainPanel{
+    gap: 1rem;
+   }
 }
 
 /* Estilos para pantallas medianas (tabletas) */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  /* Tus estilos para pantallas medianas aquí */
+  :root {
+   margin: 0;
+  }
+
+  .columnaPokemonCard{
+    display: contents !important;
+   }
+
+   .mainPanel{
+    gap: 1rem;
+   }
+  
 }
 
 /* Estilos para pantallas grandes (escritorios) */
@@ -33,22 +53,47 @@
     justify-content: center; 
     align-items: center; /* Centra verticalmente */
   }
+
+  :root {
+    margin: 0;
+   }
+
+   .mainPanel{
+    gap: 1rem;
+   }
+
+   .columnaPokemonCard{
+    display: contents !important;
+    gap: 1rem;
+   }
 }
 
 /* Estilos para pantallas extra grandes (escritorios grandes) entre 1200px y 1599px */
-@media only screen and (min-width: 1400px) and (max-width: 1649px) {
-  .col-xxl-3 {
-    flex: 0 0 33%;
-    max-width: 33%;
-  }
+@media only screen and (min-width: 1200px) and (max-width: 1599px) {
+  .mainPanel{
+    gap: 1rem;
+   }
+
+   .columnaPokemonCard{
+    display: contents !important;
+    gap: 1rem;
+   }
+
+   :root {
+    margin-left: 100px;
+  margin-right: 100px;
+   }
 }
 
 /* Define tu clase personalizada para pantallas extra grandes (xxl) entre 1600px y 2099px */
-@media only screen and (min-width: 1650px) and (max-width: 2099px) {
-  .col-xxxl-3 {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
+@media only screen and (min-width: 1600px) and (max-width: 2099px) {
+  .columnaPokemonCard{
+    display: contents !important;
+    gap: 1rem;
+   }
+   .mainPanel{
+    gap: 1rem;
+   }
 }
 
 /* Define tu clase personalizada para pantallas extra, extra grandes (xxxl) a partir de 2100px */
@@ -146,7 +191,7 @@
 }
 
 .componenteMainGeneral{
-  padding: 100px;
+  padding: 80px;
   background: rgb(134, 209, 203);
   background-image: linear-gradient(89deg, rgba(134, 209, 203, 1) 0%, rgba(39, 61, 101, 1) 100%);
 }
@@ -221,13 +266,14 @@
   background-color: #FFA500;
   color: white;
   margin-top: 10px;
-  transform: scale(1.05);
+  
 }
 
 .poke-card-button:hover {
-  background-color: #635335;
+  background-color: #ffd992;
   color: white;
   margin-top: 10px;
+  transform: scale(1.05);
 }
 
 .poke-card:hover {
@@ -320,3 +366,12 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+
+
+
+
+
+
+
+
+

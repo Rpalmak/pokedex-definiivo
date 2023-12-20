@@ -6,7 +6,6 @@ function MainPanel() {
   
   return (
     <div className='componenteMainGeneral d-flex flex-column'>
-      <SearchBar />
       <div className='mainPanel' 
         style={{
           backgroundSize: 'cover',

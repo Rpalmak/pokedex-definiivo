@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
+import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
+import PokeDetails from "../views/PokeDetails";
 import PropTypes from "prop-types";
 
 //iconos
@@ -99,9 +101,12 @@ export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
     getColorForTypes(tipo)
   );
 
-  useEffect(() => {
-    console.log(`Background color: ${backgroundColor}`);
-  }, [backgroundColor]);
+  useEffect(() => {}, [backgroundColor]);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
 
   const labelStyle = {
     fontSize: "14px",
@@ -138,8 +143,7 @@ export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
 
   return (
     <div
-      className="columnaPokemonCard text-center col-xxxxl-2 col-xxxl-3 col-xxl-3 col-xl-6 col-lg-12 col-sm-12 col-md-12 mb-4"
-      style={{ pointerEvents: "none" }}
+      className="columnaPokemonCard text-center"
     >
       <Card className="poke-card" style={cardStyle}>
         <div className="card-image-container">
@@ -175,11 +179,22 @@ export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
               </div>
             </div>
           </div>
-          <Button variant="outline-dark" className="poke-card-button">
+          <div className="wrap">
+            <Button
+            variant="outline-dark"
+            className="poke-card-button"
+            onClick={() => console.log("hola")}
+          >
             View more
           </Button>
+          </div>
+          
         </Card.Body>
       </Card>
+
+      {showModal && (
+        <PokeDetails handleCloseModal={handleCloseModal} nombre={nombre} />
+      )}
     </div>
   );
 }
