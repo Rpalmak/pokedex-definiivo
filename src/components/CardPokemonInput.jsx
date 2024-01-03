@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { PokeContext } from "../context";
+import PropTypes from "prop-types";
 import PokeCard from "./PokeCard";
 
 function BasicExample() {
@@ -42,6 +43,12 @@ function BasicExample() {
 
   const [pokemonList, setPokemonList] = useState([]);
 
+  // Función para obtener el valor de una propiedad anidada en un objeto
+function getObjectValue(obj, key) {
+  return key.split('.').reduce((o, k) => (o || {})[k], obj);
+}
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,15 +60,16 @@ function BasicExample() {
         const detailPromises = data.results.map(async (pokemon) => {
           const detailResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
           const detailData = await detailResponse.json();
+          const spriteImage = "";
+          const imageKey = `sprites.front_default`;
+        
           return {
             name: pokemon.name,
-            image: detailData.sprites.front_default,
+            image: getObjectValue(detailData, imageKey),
             number: detailData.order,
             height: detailData.height,
             weight: detailData.weight,
-            types : detailData.types.map((type) => type.type.name)
-
-
+            types: detailData.types.map((type) => type.type.name),
           };
         });
 
@@ -88,10 +96,15 @@ function BasicExample() {
           tipo={pokemon.types}
           height={pokemon.height/10.0}
           weight={pokemon.weight/10.0}
+          region={region}
         />
       ))}
     </>
   );
 }
+
+BasicExample.propTypes = {
+  lastSegment: PropTypes.string,
+};
 
 export default BasicExample;

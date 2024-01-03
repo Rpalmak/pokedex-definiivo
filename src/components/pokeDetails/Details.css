@@ -1,0 +1,70 @@
+/* Agrega estos estilos a tu archivo Details.css o donde estés manejando los estilos de este componente */
+
+.app {
+    background-color: #f8f9fa;
+    padding: 20px;
+  }
+  
+  .maindetailspanel {
+    background-color: #343a40;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .text-white {
+    color: #fff !important;
+  }
+  
+  .mainPokemonSpriteDetails {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-tabs-details {
+    background-color: #343a40;
+    border-radius: 10px;
+  }
+  
+  .nav-link-details {
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+  }
+  
+  .nav-link-details:hover,
+  .nav-link-details:focus {
+    background-color: #495057;
+  }
+  
+  .tab-content {
+    padding: 20px;
+  }
+  
+  /* Añade estos estilos solo si deseas personalizar el diseño de los elementos dentro de las pestañas */
+  
+  .tab-pane {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .custom-button {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .custom-button:hover {
+    background-color: #218838;
+  }
+  

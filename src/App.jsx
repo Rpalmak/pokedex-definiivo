@@ -14,6 +14,7 @@ import Alola from "./views/Alola";
 import Galar from "./views/Galar";
 import Paldea from "./views/Paldea";
 import Error from "./views/Error";
+import PokeDetails from "./views/PokeDetails";
 import MainPanel from './components/MainPanel';
 
 function App() {
@@ -27,7 +28,11 @@ function App() {
     const normalizedPath = location.pathname.toLowerCase();
 
     // Verificar si la ruta es válida aquí
-    const isValidRoute = normalizedPath !== "/error";
+    const isValidRoute = normalizedPath !== "/error" && normalizedPath.match(/^\/(kanto|johto|hoenn|sinnoh|hisui|unova|kalos|alola|galar|paldea)(\/)?$/);
+
+
+
+
     setIsValidRoute(isValidRoute);
 
     // Establecer el estado para mostrar MainPanel después de que la verificación sea completa
@@ -38,8 +43,9 @@ function App() {
     <>
       <Provider>
         <Routes>
+        <Route path="/" element={<Kanto />} />
+        <Route path="/:region/:nombre" element={<PokeDetails />} />
           <Route path="/Kanto" element={<Kanto />} />
-          <Route path="/" element={<Kanto />} />
           <Route path="/Johto" element={<Johto />} />
           <Route path="/Hoenn" element={<Hoenn />} />
           <Route path="/Sinnoh" element={<Sinnoh />} />
@@ -51,6 +57,7 @@ function App() {
           <Route path="/Paldea" element={<Paldea />} />
           <Route path="/error" element={<Error />} />
           <Route path="*" element={isValidRoute && <Navigate to="/error" />} />
+          
         </Routes>
         {isValidRoute && showMainPanel && <MainPanel />}
       </Provider>

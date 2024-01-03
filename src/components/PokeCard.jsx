@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Card from "react-bootstrap/Card";
 import PokeDetails from "../views/PokeDetails";
 import PropTypes from "prop-types";
+import { useNavigate, useParams } from "react-router-dom";
 
 //iconos
 import normalIcon from "../assets/images/typeIcons/normal.png";
@@ -85,7 +86,16 @@ function getColorForTypes(types) {
   }
 }
 
-export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
+export function PokeCard({
+  nombre,
+  numero,
+  imagen,
+  tipo,
+  height,
+  weight,
+  region,
+}) {
+  const navigate = useNavigate();
   const formattedTipos = tipo.map((tipo) => (
     <span key={tipo} style={{ display: "flex", alignItems: "center" }}>
       <img
@@ -142,9 +152,7 @@ export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
   };
 
   return (
-    <div
-      className="columnaPokemonCard text-center"
-    >
+    <div className="columnaPokemonCard text-center">
       <Card className="poke-card" style={cardStyle}>
         <div className="card-image-container">
           <Card.Img
@@ -181,14 +189,18 @@ export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
           </div>
           <div className="wrap">
             <Button
-            variant="outline-dark"
-            className="poke-card-button"
-            onClick={() => console.log("hola")}
-          >
-            View more
-          </Button>
+              variant="outline-dark"
+              className="poke-card-button"
+              onClick={() => {
+                console.log("imagen en PokeCard:", imagen);
+                navigate(`/${region}/${nombre}`, {
+                  state: { imagenSprite: imagen },
+                });
+              }}
+            >
+              View more
+            </Button>
           </div>
-          
         </Card.Body>
       </Card>
 
@@ -202,6 +214,7 @@ export function PokeCard({ nombre, numero, imagen, tipo, height, weight }) {
 PokeCard.propTypes = {
   nombre: PropTypes.string.isRequired,
   imagen: PropTypes.string.isRequired,
+  region: PropTypes.string.isRequired,
   tipo: PropTypes.array.isRequired,
   numero: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,

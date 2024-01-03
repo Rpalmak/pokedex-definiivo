@@ -102,6 +102,9 @@
     flex: 0 0 16.666667%;
     max-width: 16.666667%;
   }
+  .mainPanel{
+    gap: 1rem;
+   }
 }
 
 
@@ -198,9 +201,14 @@
 
 .poke-card {
   width: 250px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid black;
+  border-radius: 25px; 
 }
+
 
 
 .card-image-container {
@@ -249,17 +257,6 @@
   height: 100%;
 }
 
-.poke-card {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.poke-card {
-  border: 1px solid black;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
 .poke-card-button {
   border-radius: 5px;
